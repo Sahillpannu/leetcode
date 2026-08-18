@@ -9,7 +9,7 @@ export function useEditor(problem: any, initialLanguage = "JAVASCRIPT") {
   const [code, setCode] = useState("");
   const [isRunning, setIsRunning] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [executionResponse, setExecutionResponse] = useState(null);
+  const [executionResponse, setExecutionResponse] = useState<any>(null);
   const loadedLanguage = useRef<string | null>(null);
 
   useEffect(() => {

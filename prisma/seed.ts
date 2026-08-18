@@ -361,7 +361,7 @@ async function main() {
       data: {
         title: problem.title,
         description: problem.description,
-        difficulty: problem.difficulty,
+        difficulty: problem.difficulty as "EASY" | "MEDIUM" | "HARD",
         tags: problem.tags,
         examples: problem.examples,
         constraints: problem.constraints,

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllSubmissionByCurrentUserForProblem } from "../actions";
 
 export function useSubmissionHistory(id:string){
-     const [submissionHistory, setSubmissionHistory] = useState([]);
+     const [submissionHistory, setSubmissionHistory] = useState<any[]>([]);
 
 
      useEffect(()=>{
@@ -10,7 +10,7 @@ export function useSubmissionHistory(id:string){
             try {
                 const response = await getAllSubmissionByCurrentUserForProblem(id);
                 if(response.success){
-                      setSubmissionHistory(response.data);
+                      setSubmissionHistory(response.data ?? []);
                 }
             } catch (error) {
                  console.error('Error fetching submission history:', error);

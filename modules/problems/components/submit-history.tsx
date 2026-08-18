@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CheckCircle2, XCircle, Clock, Cpu, Code, Calendar } from "lucide-react";
 
-export const SubmissionHistory = ({ submissions = [] }) => {
+export const SubmissionHistory = ({ submissions = [] }: { submissions?: any[] }) => {
   if (!submissions.length) {
     return (
       <Card className="w-full">

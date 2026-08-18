@@ -44,7 +44,7 @@ const PlaylistsSection = ({ playlists: initialPlaylists }) => {
       router.refresh();
     } catch (error) {
       console.error("Error deleting playlist:", error);
-      toast.error(error.message || "Failed to delete playlist");
+      toast.error(error instanceof Error ? error.message : "Failed to delete playlist");
     } finally {
       setDeletingId(null);
     }

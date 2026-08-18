@@ -4,10 +4,15 @@ import PlaylistsSection from '@/modules/profile/components/playlist-section'
 import ProfileStats from '@/modules/profile/components/profile-stats'
 import SolvedProblems from '@/modules/profile/components/solved-problems'
 import UserInfoCard from '@/modules/profile/components/user-info-card'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 const ProfilePage = async() => {
     const profileData = await getCurrentUserData()
+
+    if (!profileData) {
+      redirect('/')
+    }
 
   return (
     <div className='min-h-screen py-32'>
@@ -15,10 +20,9 @@ const ProfilePage = async() => {
             <UserInfoCard userData={profileData}/>
 
             <ProfileStats
-              submissions={profileData?.submissions}
-          solvedCount={profileData?.solvedProblems.length}
-          playlistCount={profileData?.playlists.length}
-            
+              submissions={profileData.submissions}
+              solvedCount={profileData.solvedProblems.length}
+              playlistCount={profileData.playlists.length}
             />
 
             <SubmissionHistory submissions={profileData.submissions}/>

@@ -12,7 +12,7 @@ import React from 'react'
 const CreateProblemPage = async() => {
     const user = await getCurrentUserData();
 
-    if(!user || 'error' in user || user?.role !== UserRole.ADMIN){
+    if(!user || user.role !== UserRole.ADMIN){
         redirect("/")
     }
 

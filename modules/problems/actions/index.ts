@@ -48,13 +48,17 @@ export const getProblemById = async (id: string) => {
 };
 
 export const executeCode = async (
-  source_code,
-  language_id,
-  stdin,
-  expected_outputs,
-  id,
+  source_code: string,
+  language_id: number,
+  stdin: string[],
+  expected_outputs: string[],
+  id: string,
 ) => {
   const user = await getCurrentUserData();
+
+  if (!user) {
+    return { success: false, error: "Unauthorized" };
+  }
 
   if (
     !Array.isArray(stdin) ||
@@ -104,7 +108,7 @@ export const executeCode = async (
 
   const submission = await prisma.submission.create({
     data: {
-      userId: user?.id,
+      userId: user.id,
       problemId: id,
       sourceCode: source_code,
       language: getLanguageName(language_id),
@@ -133,12 +137,12 @@ export const executeCode = async (
   if (allPassed) {
     await prisma.problemSolved.upsert({
       where: {
-        userId_problemId: { userId: user?.id, problemId: id },
+        userId_problemId: { userId: user.id, problemId: id },
       },
 
       update: {},
       create: {
-        userId: user?.id,
+        userId: user.id,
         problemId: id,
       },
     });
@@ -187,10 +191,14 @@ export const getAllSubmissionByCurrentUserForProblem = async (
 ) => {
   const user = await getCurrentUserData();
 
+  if (!user) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   const submissions = await prisma.submission.findMany({
     where: {
       problemId: problemId,
-      userId: user?.id,
+      userId: user.id,
     },
   });
 

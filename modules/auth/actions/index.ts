@@ -67,7 +67,7 @@ export const getCurrentUserData = async()=>{
   try {
     const user = await currentUser();
     if(!user){
-      return { success: false, error: "No authenticated user found" };
+      return null;
     }
     const data = await prisma.user.findUnique({
      where:{
@@ -100,6 +100,7 @@ export const getCurrentUserData = async()=>{
 
     return data;
   } catch (error) {
-    
+    console.log(error)
+    return null;
   }
 }

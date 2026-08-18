@@ -15,7 +15,7 @@ import { toast } from "sonner";
 
 
 const AddToPlaylistModal = ({isOpen , onClose , onSubmit , problemId}:any)=>{
-     const [playlists, setPlaylists] = useState([]);
+     const [playlists, setPlaylists] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(()=>{

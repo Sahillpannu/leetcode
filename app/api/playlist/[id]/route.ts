@@ -9,7 +9,7 @@ export async function DELETE(
   try {
     const user = await getCurrentUserData();
 
-    if (!user || "error" in user) {
+    if (!user) {
       return NextResponse.json(
         { success: false, error: "Unauthorized" },
         { status: 401 },

@@ -1,6 +1,6 @@
 import { useState , useMemo } from "react";
 
-export function useProblemFilters(problems=[]){
+export function useProblemFilters(problems: any[] = []){
     console.log("useProblemFilters called with problems:", problems);
       const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("ALL");
